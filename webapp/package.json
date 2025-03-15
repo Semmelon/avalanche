@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.10.1",
+    "@prisma/client": "^6.5.0",
+    "bcrypt-ts": "^6.0.0",
     "nuxt": "^3.16.0",
     "nuxt-auth-utils": "^0.5.16",
     "pinia": "^3.0.1",
