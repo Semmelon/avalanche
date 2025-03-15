@@ -1,14 +1,19 @@
 <script setup>
-    const { loggedIn, user, session, fetch, clear, openInPopup } = useUserSession()
-    const email = ref('')
-    const password = ref('')
+    const { loggedIn, user, session, fetch: refreshSession, clear, openInPopup } = useUserSession()
+    const credentials = reactive({
+        email: '',
+        password: ''
+    })
 
     async function login() {
         await $fetch('/api/login', {
             method: 'POST',
-            body: { email: email.value, password: password.value }
+            body: credentials
         })
-        
+        .then(async () => {
+           await refreshSession()
+        })
+        .catch((err) => alert(err))
     }
 </script>
 
@@ -21,9 +26,9 @@
   <div v-else>
     <form @submit.prevent="login">
         <label for="">Email: </label>
-        <input type="text" v-model="email">
+        <input type="text" v-model="credentials.email">
         <label for="">Password: </label>
-        <input type="password" v-model="password">
+        <input type="password" v-model="credentials.password">
         <button type="submit">Login</button>
     </form>
     <br>
