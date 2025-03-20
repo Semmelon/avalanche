@@ -1,5 +1,6 @@
 <script setup>
     const { loggedIn, user, session, fetch: refreshSession, clear, openInPopup } = useUserSession()
+    
     const credentials = reactive({
         email: '',
         password: ''

@@ -3,8 +3,6 @@ import { PrismaClient } from '@prisma/client'
 export default defineEventHandler(async (event) => {
     const email = event.context.params?.email
 
-    console.log(email)
-
     if(email === undefined){
         throw createError({
             statusCode: 401,

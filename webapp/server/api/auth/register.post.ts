@@ -1,5 +1,4 @@
 import { userSchema } from "@/prisma/schema/user"
-import { genSalt, hash } from "bcrypt-ts"
 
 export default defineEventHandler(async (event) => {
     const { email, password } = await readValidatedBody(event, userSchema.parse)
@@ -11,26 +10,30 @@ export default defineEventHandler(async (event) => {
             statusCode: 401,
             message: 'User already exists'
         })
-    } catch (err:any){
-        if(err.statusCode == 404){
-            try {
-                await $fetch('/api/db/user/add', {
-                    method: 'POST',
-                    body: {
-                        email: email,
-                        password: password
-                    }
-                })
-                await setUserSession(event, {
-                    user: {
-                        name: email,
-                        role: 'user'
-                    }
-                })
-                return { success: true }
-            } catch (error) {
-                return error
+    } catch (err: any){
+        if(err.statusCode != 404){
+            throw err   
+        }
+    }
+
+    try {
+        await $fetch('/api/db/user/add', {
+            method: 'POST',
+            body: {
+                email: email,
+                password: password
             }
-        } else return err
+        })
+
+        await setUserSession(event, {
+            user: {
+                name: email,
+                role: 'user'
+            }
+        })
+
+        return { success: true }
+    } catch (error) {
+        return error
     }
 })

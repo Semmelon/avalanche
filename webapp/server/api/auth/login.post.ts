@@ -22,9 +22,9 @@ export default defineEventHandler(async (event) => {
                 role: 'user'
             }
         })
+
         return { success: true }
-    } catch (error) {
-        console.log(error)
-        return error
+    } catch (err) {
+        return err
     }
 })

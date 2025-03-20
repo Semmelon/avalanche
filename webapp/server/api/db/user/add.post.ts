@@ -7,6 +7,7 @@ export default defineEventHandler(async (event) => {
 
     try {
         const prisma = new PrismaClient()
+        
         const salt = await genSalt(10)
         const hashedPassword = await hash(password, salt)
 
