@@ -12,3 +12,11 @@ model User {
   email String @unique @db.VarChar(64)
   password String @db.VarChar(60)
 }
+
+model Note {
+  id String @id @unique @db.Uuid @default(uuid())
+  titel String @db.VarChar(64)
+  description String @db.Text
+  creator String
+  creationDate DateTime @db.Timestamp() @default(now())
+}
