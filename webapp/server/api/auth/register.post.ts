@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     }
 
     try {
-        await $fetch('/api/db/user/add', {
+        await $fetch('/api/db/user', {
             method: 'POST',
             body: {
                 email: email,
