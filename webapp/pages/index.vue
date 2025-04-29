@@ -6,4 +6,7 @@
 
 <template>
     This is the homepage: {{ testStore.message }}
+    <div>
+        This is the home page
+    </div>
 </template>

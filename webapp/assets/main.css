@@ -1,3 +1,50 @@
-.testclass {
-    color: red;
+:root {
+    --tri-green: #abffc4;
+    --tri-purple: #c4abff;
+    --tri-orange: #ffc4ab;
+    --mh2-blue: #2039f2;
+    --mh-blue: #091148;
+    --header-height: 5rem;
+    --footer-height: 3.5rem;
+}
+
+body { 
+    margin: 0;
+    padding: 0;
+}
+
+.layout-box {
+    position: relative;
+    min-height: 100vh;
+}
+
+.content-wrap {
+    padding-top: calc(var(--header-height) + 2rem);
+    padding-bottom: calc(var(--footer-height) + 2rem);
+}
+
+.header {
+    color: var(--mh-blue);
+    font-size: 32px;
+    width: 100%;
+    height: var(--header-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    box-shadow: 0 4px 2px -3px var(--mh-blue);
+}
+
+.footer {
+    color: var(--mh-blue);
+    font-size: 28px;
+    width: 100%;
+    height: var(--footer-height); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0 -5px 5px -5px var(--mh-blue);
 }
