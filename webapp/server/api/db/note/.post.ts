@@ -8,6 +8,7 @@ export default defineEventHandler(async (event) => {
 
     try {
         const res = await $fetch(`/api/db/user/${user_email}`)
+        //todo: id holen und in  user_id reingeben
     } catch (error) {
         return createError({
             statusCode: 500,
@@ -26,6 +27,11 @@ export default defineEventHandler(async (event) => {
             }
         })
     } catch (error) {
-        
+        return createError({
+            statusCode: 500,
+            message: 'Something went wrong while creating the note'
+        })
     }
+
+    return { success: true }
 }) 
