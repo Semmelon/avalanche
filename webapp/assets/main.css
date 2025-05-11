@@ -19,8 +19,15 @@ body {
 }
 
 .content-wrap {
-    padding-top: calc(var(--header-height) + 2rem);
-    padding-bottom: calc(var(--footer-height) + 2rem);
+    /*
+        for in the middle
+    */
+    height: 80vh;
+    /*
+        for fixed layout
+        padding-top: calc(var(--header-height) + 2rem);
+        padding-bottom: calc(var(--footer-height) + 2rem);
+    */
 }
 
 .header {
