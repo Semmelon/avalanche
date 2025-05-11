@@ -33,12 +33,12 @@ const register = async (email: string) => {
 
 export default defineOAuthGoogleEventHandler({
     async onSuccess(event:any, { user, tokens }: any){
-        console.log(user.login.email)
+        console.log(user.email)
 
-        const created_user = register(user.login.email)
+        const created_user = await register(user.email)
 
         await setUserSession(event, {
-            user: { login: user },
+            user: created_user,
             secure: { tokens },
         })
         return sendRedirect(event, '/')
