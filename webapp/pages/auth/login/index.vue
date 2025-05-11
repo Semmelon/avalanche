@@ -20,8 +20,10 @@
 
 <template>
   <div v-if="loggedIn">
-    <h1>Welcome {{ user.name }}!</h1>
+    <h1>Welcome {{ user.login.email }}!</h1>
     <p>Logged in since {{ session.loggedInAt }}</p>
+    <p>{{ user }}</p>
+     
     <button @click="clear">Logout</button>
   </div>
   <div v-else>
@@ -40,8 +42,8 @@
     <br>
     <br>
     <h1>Not logged in</h1>
-    <a href="/auth/github">Login with GitHub</a>
+    <a href="/auth/google">Login with GitHub</a>
     <!-- or open the OAuth route in a popup -->
-    <button @click="openInPopup('/auth/github')">Login with GitHub</button>
+    <button @click="openInPopup('/auth/google')">Login with GitHub</button>
   </div>
 </template>
