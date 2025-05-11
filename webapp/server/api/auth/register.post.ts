@@ -4,7 +4,8 @@ export default defineEventHandler(async (event) => {
     const { email, password } = await readValidatedBody(event, userSchema.parse)
 
     try{
-        await $fetch(`/api/db/user/${email}`)
+        const email_o = email+';false'
+        await $fetch(`/api/db/user/${email_o}`)
 
         return createError({
             statusCode: 401,

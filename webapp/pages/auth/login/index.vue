@@ -1,12 +1,13 @@
-<script setup>
-    const { loggedIn, user, session, fetch: refreshSession, clear, openInPopup } = useUserSession()
-    
-    const credentials = reactive({
-        email: '',
-        password: '',
-    })
+<script setup lang="ts">
+    import type AuthCredentials from '@/types/credentials'
 
-    async function login() {
+    const { fetch: refreshSession } = useUserSession()
+
+    const login = async (buttonName: string, credentials: AuthCredentials) => {
+        if(buttonName !== 'Sign In'){
+          console.log('Something went wrong!!!')
+        }
+
         await $fetch('/api/auth/login', {
             method: 'POST',
             body: credentials
@@ -15,35 +16,14 @@
            await refreshSession()
         })
         .catch((err) => alert(err))
+
+        return navigateTo('/')
     }
 </script>
 
 <template>
-  <div v-if="loggedIn">
-    <h1>Welcome {{ user.login.email }}!</h1>
-    <p>Logged in since {{ session.loggedInAt }}</p>
-    <p>{{ user }}</p>
-     
-    <button @click="clear">Logout</button>
-  </div>
-  <div v-else>
-    <form @submit.prevent="login">
-        <label for="">Email: </label>
-        <input type="text" v-model="credentials.email">
-        <label for="">Password: </label>
-        <input type="password" v-model="credentials.password">
-        <button type="submit">Login</button>
-    </form>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1>Not logged in</h1>
-    <a href="/auth/google">Login with GitHub</a>
-    <!-- or open the OAuth route in a popup -->
-    <button @click="openInPopup('/auth/google')">Login with GitHub</button>
-  </div>
+    <CredentialsForm
+        buttonName="Sign In"
+        v-on:submitCredentials="login"
+    />
 </template>

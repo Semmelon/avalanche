@@ -6,7 +6,9 @@
     <div class="layout-box">
             <Header/>
             <div class="content-wrap">
-                <slot/>
+                <div class="place-center">
+                    <slot/>
+                </div>
             </div>
         <Footer/>
     </div>

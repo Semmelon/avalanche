@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import type { PropType } from 'vue'
+    import GoogleIcon from '@/assets/Googlcon.jpg'
     import type AuthCredentials from '@/types/credentials'
 
     defineProps({
@@ -29,7 +30,15 @@
             <input id="passwordfield" type="password" v-model="password">
             <button type="submit">{{ buttonName }}</button>
         </form>
-        <div class="borderDiv"/>
+        <div class="borderDiv">
+            <div/>
+            <p>OR</p>
+            <div/>
+        </div>
+        <a href="/auth/google" class="googleLine">
+            <p>Login with Google </p>
+            <img :src="GoogleIcon" width="24px">
+        </a>
     </div>
 </template>
 
@@ -37,7 +46,7 @@
     .authBox {
         color: var(--mh-blue);
         width: 600px;
-        padding: 32px 32px;
+        padding: 32px 32px 28px;
         display: flex;
         flex-direction: column;
         place-items: center;
@@ -77,11 +86,31 @@
     }
 
     .borderDiv {
-        background-color: var(--mh-blue);
-        opacity: 60%;
-        height: 2px;
         width: 90%;
-        margin: 16px auto;
-        box-shadow: 0 4px 2px -3px var(--mh-blue);
+        margin: 32px auto 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        div {
+            background-color: var(--mh-blue);
+            width: 100%;
+            opacity: 60%;
+            height: 2px;
+            box-shadow: 0 4px 2px -3px var(--mh-blue);
+        }
+
+        p {
+            margin: 0px 8px;
+        }
+    }
+
+    .googleLine {
+        display: flex;
+        align-items: center;
+
+        p {
+            margin-right: 8px;
+        }
     }
 </style>

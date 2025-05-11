@@ -4,8 +4,10 @@ import { compare } from 'bcrypt-ts'
 export default defineEventHandler(async (event) => {
     const { email, password } = await readValidatedBody(event, userSchema.parse)
 
+    const email_o = email+';false'
+
     try {
-        const data:any = await $fetch(`/api/db/user/${email}`)
+        const data:any = await $fetch(`/api/db/user/${email_o}`)
 
         const equal = await compare(password, data.user.password)
 
@@ -18,7 +20,7 @@ export default defineEventHandler(async (event) => {
 
         await setUserSession(event, {
             user: {
-                name: email,
+                email: data.user.email,
                 role: 'user',
             }
         })

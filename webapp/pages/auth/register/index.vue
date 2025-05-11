@@ -1,11 +1,13 @@
-<script setup>
-    const { loggedIn, user, session, fetch: refreshSession, clear, openInPopup } = useUserSession()
-    const credentials = reactive({
-        email: '',
-        password: ''
-    })
+<script setup lang="ts">
+    import type AuthCredentials from '@/types/credentials'
 
-    async function register() {
+    const { fetch: refreshSession } = useUserSession()
+
+    const register = async (buttonName: string, credentials: AuthCredentials) => {
+        if(buttonName !== 'Sign Up'){
+          console.log('Something went wrong!!!')
+        }
+
         await $fetch('/api/auth/register', {
             method: 'POST',
             body: credentials
@@ -14,22 +16,14 @@
            await refreshSession()
         })
         .catch((err) => alert(err))
+
+        return navigateTo('/')
     }
 </script>
 
 <template>
-    <div v-if="loggedIn">
-        <h1>Welcome {{ user.login }}!</h1>
-        <p>Logged in since {{ session.loggedInAt }}</p>
-        <button @click="clear">Logout</button>
-    </div>
-    <div v-else>
-        <form @submit.prevent="register">
-            <label for="">Email: </label>
-            <input type="text" v-model="credentials.email">
-            <label for="">Password: </label>
-            <input type="password" v-model="credentials.password">
-            <button type="submit">Register</button>
-        </form>
-    </div>
+    <CredentialsForm
+        buttonName="Sign Up"
+        v-on:submitCredentials="register"
+    />
 </template>

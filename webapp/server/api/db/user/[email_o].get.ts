@@ -1,21 +1,25 @@
 import { PrismaClient } from '@prisma/client'
 
 export default defineEventHandler(async (event) => {
-    const email = event.context.params?.email
+    const email_o = event.context.params?.email_o
 
-    if(email === undefined){
+    if(email_o === undefined){
         throw createError({
             statusCode: 401,
             message: 'Bad Request',
         })
     }
+ 
+    const email: string = email_o.split(';')[0]
+    const isOAuth: boolean = (email_o.split(';')[1] === 'true')
 
     try {
         const prisma = new PrismaClient()
 
-        const user = await prisma.user.findUnique({
+        const user = await prisma.user.findFirst({
             where: {
-                email: email
+                email: email,
+                isOAuth: isOAuth,
             }
         })
 
