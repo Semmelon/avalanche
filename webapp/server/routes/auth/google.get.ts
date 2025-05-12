@@ -33,7 +33,6 @@ const register = async (email: string) => {
 
 export default defineOAuthGoogleEventHandler({
     async onSuccess(event:any, { user, tokens }: any){
-        console.log(user.email)
 
         const created_user = await register(user.email)
 

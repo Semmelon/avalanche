@@ -1,5 +1,6 @@
 <template>
     <div class="header">
-        This is the head
+            <p>This is the head</p>
+            <NavBar/>
     </div>
 </template>

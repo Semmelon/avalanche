@@ -39,15 +39,23 @@ body {
 
 .header {
     color: var(--mh-blue);
-    font-size: xx-large;
+    font-size: x-large;
     width: 100%;
     height: var(--header-height);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     position: absolute;
     top: 0;
     box-shadow: 0 4px 2px -3px var(--mh-blue);
+
+    p {
+        margin: 0px 32px;
+    }
+
+    nav {
+        margin: 0px 32px;
+    }
 }
 
 .footer {

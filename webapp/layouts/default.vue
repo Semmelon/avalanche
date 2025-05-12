@@ -5,11 +5,13 @@
 <template>
     <div class="layout-box">
             <Header/>
-            <div class="content-wrap">
-                <div class="place-center">
-                    <slot/>
+            <main>
+                <div class="content-wrap">
+                    <div class="place-center">
+                        <slot/>
+                    </div>
                 </div>
-            </div>
+            </main>
         <Footer/>
     </div>
 </template>
