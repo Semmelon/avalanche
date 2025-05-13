@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import { navItemsIn, navItemsOut } from '@/config'
 
-        const { loggedIn, user, session, fetch: refreshSession, clear, openInPopup } = useUserSession()
+        const { loggedIn } = useUserSession()
 </script>
 
 <template>

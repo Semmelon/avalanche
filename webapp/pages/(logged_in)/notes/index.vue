@@ -22,14 +22,5 @@
 </script>
 
 <template>
-    This is the pages where the notes should be
-    The useremail: {{user.name}}
-
-    <form @submit.prevent="submit">
-        <label for="">Title: </label>
-        <input type="text" v-model="title">
-        <label for="">Description: </label>
-        <input type="text" v-model="description">
-        <button type="submit">Add</button>
-    </form>
+    <NoteForm/>
 </template>
