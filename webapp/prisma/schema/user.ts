@@ -5,6 +5,8 @@ export const userSchema = z.object({
     password: z.string().min(8),
 })
 
+export type UserData = z.infer<typeof userSchema>
+
 export const userEmail = z.object({
     email: z.string().email(),
 })
