@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
     const email_o = email+';false'
 
     try {
-        const data:any = await $fetch(`/api/db/user/${email_o}`)
+        const data: any = await $fetch(`/api/db/user/${email_o}`)
 
         const equal = await compare(password, data.user.password)
 
@@ -22,6 +22,7 @@ export default defineEventHandler(async (event) => {
             user: {
                 email: data.user.email,
                 role: 'user',
+                isOAuth: data.user.isOAuth,
             }
         })
 

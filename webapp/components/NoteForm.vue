@@ -1,7 +1,7 @@
 <script setup lang="ts">
-    import type AddNote  from '@/types/addNote'
+    import type { Note } from '@/types/note'
 
-    const addNote = reactive<AddNote>({title: '', description: ''})
+    const addNote = reactive<Note>({title: '', description: ''})
 
     const { title, description } = toRefs(addNote)
 </script>

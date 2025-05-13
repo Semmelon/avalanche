@@ -6,7 +6,8 @@ const register = async (email: string) => {
 
         return {
             email: data.user.email,
-            role: 'user'
+            role: 'user',
+            isOAuth: data.user.isOAuth
         }
     } catch (err: any){
         if(err.statusCode != 404){
@@ -24,7 +25,8 @@ const register = async (email: string) => {
 
         return {
             email: email,
-            role: 'user'
+            role: 'user',
+            isOAuth: true,
         } 
     } catch (error) {
         return null

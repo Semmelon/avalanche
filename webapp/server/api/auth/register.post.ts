@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     }
 
     try {
-        await $fetch('/api/db/user', {
+        const user = await $fetch('/api/db/user', {
             method: 'POST',
             body: {
                 email: email,
@@ -28,8 +28,9 @@ export default defineEventHandler(async (event) => {
 
         await setUserSession(event, {
             user: {
-                name: email,
-                role: 'user'
+                name: user.email,
+                role: 'user',
+                isOAuth: user.isOAuth
             }
         })
 

@@ -1,16 +1,17 @@
-<script setup>
+<script setup lang="ts">
+    import type { Note } from '@/types/note'
+
     const { user } = useUserSession()
+    
+    const createNote = async (note: Note) => {
+        const t: any = user.value
 
-    const note = reactive({
-        titel: '',
-        description: '',
-    })
+        console.log(t.email)
 
-    const submit = async () => {
         const data = {
-            titel: note.titel,
+            titel: note.title,
             description: note.description,
-            user_email: user.name
+            user_email: t.email
         }
         
         $fetch('/api/db/note', {
@@ -22,5 +23,7 @@
 </script>
 
 <template>
-    <NoteForm/>
+    <NoteForm
+        v-on:submitNote="createNote"
+    />
 </template>

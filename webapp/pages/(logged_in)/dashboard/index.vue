@@ -1,3 +1,11 @@
+<script setup lang="ts">
+    const { loggedIn, user, clear } = useUserSession()
+</script>
+
 <template>
-    This is the page, where the dashboard should be
+    <div v-if="loggedIn">
+        this is a test
+        {{ user }}
+        <button @click="clear()">Click this</button>
+    </div>
 </template>
