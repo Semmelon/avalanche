@@ -19,9 +19,16 @@ body {
 }
 
 .content-wrap {
+    height: 70vh;
     padding-top: calc(var(--header-height) + 2rem);
     padding-bottom: calc(var(--footer-height) + 2rem);
 }
+
+.content-wrap-notes {
+    padding-top: calc(var(--header-height) + 2rem);
+    padding-bottom: calc(var(--footer-height) + 2rem);
+}
+
 
 .place-center {
     display: flex;

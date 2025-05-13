@@ -6,7 +6,7 @@
     <div class="layout-box">
             <Header/>
             <main>
-                <div class="content-wrap">
+                <div class="content-wrap-notes">
                     <slot/>
                 </div>
             </main>

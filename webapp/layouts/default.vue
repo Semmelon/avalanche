@@ -15,9 +15,3 @@
         <Footer/>
     </div>
 </template>
-
-<style lang="css">
-    .content-wrap {
-        height: 70vh;
-    }
-</style>

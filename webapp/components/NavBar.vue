@@ -28,7 +28,13 @@
 <style lang="css">
     .navItem {
         color: var(--mh-blue);
-        margin: 0px 16px;
+        margin-right: 16px;
         text-decoration: none;
+    }
+
+    @media (min-width: 840px){
+        .navItem {
+            margin-right: 4rem;
+        }
     }
 </style>
