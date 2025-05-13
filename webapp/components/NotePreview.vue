@@ -12,7 +12,7 @@
     })
 
     const onEdit = async (noteId: string) => {
-        navigateTo(`/`)
+        navigateTo(`/notes/edit/${noteId}`)
     }
 </script>
 
@@ -56,6 +56,9 @@
 
     .note-title {
         margin-right: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipses;
     }
 
     .note-description {

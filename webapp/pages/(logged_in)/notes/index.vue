@@ -40,7 +40,6 @@
                 @click="redirect"
                 type="button" 
                 class="button" 
-                to="/notes/add"
             >
                 Create New
         </button>

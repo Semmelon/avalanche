@@ -18,12 +18,12 @@
             method: 'POST',
             body: data
         })
-        .catch((err) => alert(err))
         .then((data: any) => {
             if(data.success){
                 navigateTo('/notes')
             }
         })
+        .catch((err) => alert(err))
     }
 </script>
 
