@@ -1,22 +1,18 @@
 <script setup lang="ts">
     import type { PropType } from 'vue'
-    import type { Note } from '@/types/note'
+    import type { GetNote } from '@/types/note'
     import DeleteImage from '@/assets/Delete.png'
     import EditImage from '@/assets/Edit.png'
 
     defineProps({
         note: {
             required: true,
-            type: Object as PropType<Note>,
+            type: Object as PropType<GetNote>,
         }
     })
 
-    const onDelete = async () => {
-
-    }
-
-    const onEdit = async () => {
-
+    const onEdit = async (noteId: string) => {
+        navigateTo(`/`)
     }
 </script>
 
@@ -31,14 +27,15 @@
             </p>
         </div>
         <div class="note-icons">
-            <img :src="EditImage" @click="onEdit">
-            <img :src="DeleteImage" @click="onDelete">
+            <img :src="EditImage" @click="onEdit(note.id)">
+            <img :src="DeleteImage" @click="$emit('onDelete', note.id)">
         </div>
     </div>
 </template>
 
 <style lang="css">
     .note {
+        color: var(--mh-blue);
         height: 3.5rem;
         width: 80%;
         max-width: 840px;

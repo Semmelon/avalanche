@@ -1,83 +1,56 @@
 <script setup lang="ts">
-    import type { Note } from '@/types/note'
+    import type { GetNote } from '@/types/note'
     import NotePreview from '@/components/NotePreview.vue'
 
     definePageMeta({
         layout: 'notelist'
     })
 
-    const notes = ref<Note[]>()
-    const testNotes: Note[] = [
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'test1',
-        },
-        {
-            title: 'test1',
-            description: 'testkdksdfhsdfjhkdsafdsadsfkjkdsafjkj1',
-        },
-    ]
+    const { user } = useUserSession()
+
+    const notes = ref<GetNote[]>()
+
+    const redirect = () => {
+        navigateTo('/notes/add')
+    }
+
+    const deleteNote = async (noteId: string) => {
+        await $fetch(`/api/db/note/${noteId}`, {
+            method: 'DELETE'
+        })
+        .catch(error => alert(error))
+
+        notes.value = notes.value?.filter(note => note.id !== noteId)
+    }
 
     onMounted(async () => {
-        //notes.value = await $fetch('/api/db/note/:email_o')
+        const u: any = user.value;
+        await $fetch<GetNote[]>(`/api/db/note/${u.email + ';' + u.isOAuth}`)
+        .then(data => {
+            notes.value = data
+        })
+        .catch(error => alert(error))
     })
 </script>
 
 <template>
     <div class="note-container">
-        <NotePreview v-for="(note, i) in testNotes" :note="note" :key="i"/>
+        <div class="button-div">
+            <button
+                @click="redirect"
+                type="button" 
+                class="button" 
+                to="/notes/add"
+            >
+                Create New
+        </button>
+        </div>
+        <NotePreview 
+            v-for="(note) in notes" 
+            :note="note" 
+            :key="note.id"
+            v-on:onDelete="deleteNote"
+        />
     </div>
 </template>
 
@@ -90,4 +63,21 @@
         justify-content: center;
         align-items: center;
     }  
+
+    .button-div {
+        min-width: 80%;
+        margin-bottom: 1.5rem;
+        display: flex;
+        justify-content: start;
+    }
+
+    .button {
+        background-color: white;
+        padding: 8px 16px;
+        margin-top: 16px;
+        border-radius: 4px;
+        border-color: var(--mh-blue);
+        border-width: 3px;
+        cursor: pointer;
+    }
 </style>

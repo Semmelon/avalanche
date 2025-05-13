@@ -9,3 +9,9 @@ export interface AddNote {
     user_email: string,
     isOAuth: boolean,
 }
+
+export interface GetNote {
+    id: string,
+    title: string,
+    description: string,
+}

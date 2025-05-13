@@ -12,3 +12,9 @@ export const addNoteSchema = z.object({
     user_email: z.string().email(),
     isOAuth: z.boolean(),
 })
+
+export const getNoteSchema = z.object({
+    id: z.string(),
+    title: z.string().min(1).max(64),
+    description: z.string(),  
+})

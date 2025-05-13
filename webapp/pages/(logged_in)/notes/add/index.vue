@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import type { AddNote, Note } from '@/types/note'
+    import AddNoteForm from '@/components/AddNoteForm.vue'
 
     const { user } = useUserSession()
     
@@ -27,7 +28,7 @@
 </script>
 
 <template>
-    <NoteForm
+    <AddNoteForm
         v-on:submitNote="createNote"
     />
 </template>

@@ -21,20 +21,19 @@ export default defineEventHandler(async (event) => {
 
             await prisma.note.create({
                 data: {
-                    titel: title,
+                    title: title,
                     description: description,
                     creatorId: user_id,
                 }
             })
         } catch (error) {
-            console.log(error)
-            return createError({
+            throw createError({
                 statusCode: 500,
                 message: 'Something went wrong while creating the note'
             })
         }
     } catch (error) {
-        return createError({
+        throw createError({
             statusCode: 500,
             message: 'Something went wrong with fetching the user'
         })

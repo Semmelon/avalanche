@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
         })
 
         if(user == null){
-            return createError({
+            throw createError({
                 statusCode: 404,
                 message: 'User not found',
             })
@@ -32,7 +32,6 @@ export default defineEventHandler(async (event) => {
 
         return { user: user }
     } catch (error) {
-        console.log(error)
         throw createError({
             statusCode: 500,
             message: 'Somethign went wrong while searching the user!',
