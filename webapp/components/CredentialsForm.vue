@@ -6,7 +6,7 @@
     defineProps({
         buttonName: {
             required: true,
-            Type: String as PropType<string>,
+            type: String as PropType<string>,
         }
     })
 
@@ -18,7 +18,7 @@
 <template>
     <div class="authBox">
         <h1>
-            Avalanche
+            Avalanche Auth
         </h1>
         <form 
             @submit.prevent="$emit('submitCredentials', buttonName, credentials)"

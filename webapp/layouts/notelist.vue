@@ -7,17 +7,9 @@
             <Header/>
             <main>
                 <div class="content-wrap">
-                    <div class="place-center">
-                        <slot/>
-                    </div>
+                    <slot/>
                 </div>
             </main>
         <Footer/>
     </div>
 </template>
-
-<style lang="css">
-    .content-wrap {
-        height: 70vh;
-    }
-</style>

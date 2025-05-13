@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-            <p>This is the head</p>
+            <p>Avalanche</p>
             <NavBar/>
     </div>
 </template>
