@@ -1,7 +1,14 @@
 import { z } from 'zod'
 
 export const noteSchema = z.object({
-    titel: z.string().min(1).max(64),
+    title: z.string().min(1).max(64),
     description: z.string(),
     user_email: z.string().email(),
+})
+
+export const addNoteSchema = z.object({
+    title: z.string().min(1).max(64),
+    description: z.string(),
+    user_email: z.string().email(),
+    isOAuth: z.boolean(),
 })

@@ -25,7 +25,7 @@
             class="formBox"
         >
             <label for="emailField">Email: </label>
-            <input id="emailField" type="text" v-model="email">
+            <input id="emailField" type="email" v-model="email">
             <label for="passwordfield">Password: </label>
             <input id="passwordfield" type="password" v-model="password">
             <button type="submit">{{ buttonName }}</button>

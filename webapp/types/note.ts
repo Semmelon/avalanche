@@ -6,5 +6,6 @@ export interface Note {
 export interface AddNote {
     title: string,
     description: string,
-    creator: string,
+    user_email: string,
+    isOAuth: boolean,
 }

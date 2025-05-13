@@ -18,7 +18,7 @@
             <label for="emailField">Titel: </label>
             <input id="emailField" type="text" v-model="title">
             <label for="passwordfield">Description: </label>
-            <input id="passwordfield" type="password" v-model="description">
+            <input id="passwordfield" type="text" v-model="description">
             <button type="submit">Create</button>
         </form>
     </div>
