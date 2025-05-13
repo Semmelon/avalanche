@@ -1,6 +1,8 @@
 <script setup lang="ts">
     import type { PropType } from 'vue'
-    import type { Note } from '~/types/note'
+    import type { Note } from '@/types/note'
+    import DeleteImage from '@/assets/Delete.png'
+    import EditImage from '@/assets/Edit.png'
 
     defineProps({
         note: {
@@ -8,6 +10,14 @@
             type: Object as PropType<Note>,
         }
     })
+
+    const onDelete = async () => {
+
+    }
+
+    const onEdit = async () => {
+
+    }
 </script>
 
 <template>
@@ -21,7 +31,8 @@
             </p>
         </div>
         <div class="note-icons">
-
+            <img :src="EditImage" @click="onEdit">
+            <img :src="DeleteImage" @click="onDelete">
         </div>
     </div>
 </template>
@@ -35,19 +46,43 @@
         margin-bottom: 32px;
         display: flex;
         justify-content: space-between;
+        border-radius: 4px;
         box-shadow: 4px 4px 16px 4px rgb(202, 230, 240);
     }
 
     .note-text {
         display: flex;
+        width: 50%;
+        font-size: large;
+        margin: 0px 16px;
+    }
 
+    .note-title {
+        margin-right: 16px;
     }
 
     .note-description {
-
+        margin-right: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipses;
     }
 
     .note-icons {
+        display: flex;
+        align-items: center;
 
+        img {
+            
+            height: 25px;
+            margin-right: 16px;
+            cursor: pointer;
+        }
+    }
+
+    @media (min-width: 840px){
+        .note-text {
+            width: 100%;
+        }
     }
 </style>

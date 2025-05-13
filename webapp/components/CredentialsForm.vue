@@ -17,7 +17,7 @@
 
 <template>
     <div class="authBox">
-        <h1>
+        <h1 class="note-header">
             Avalanche Auth
         </h1>
         <form 
@@ -45,7 +45,8 @@
 <style lang="css">
     .authBox {
         color: var(--mh-blue);
-        width: 600px;
+        width: 75%;
+        max-width: 600px;
         padding: 32px 32px 28px;
         display: flex;
         flex-direction: column;
@@ -53,8 +54,8 @@
         box-shadow: 4px 4px 16px 4px rgb(202, 230, 240);
     }
 
-    h1 {
-        font-size: xxx-large;
+    .note-header {
+        font-size: xx-large;
         font-weight: 400;
     }
 
@@ -111,6 +112,12 @@
 
         p {
             margin-right: 8px;
+        }
+    }
+
+    @media (min-width: 840px) {
+        .note-header {
+            font-size: xxx-large;
         }
     }
 </style>
