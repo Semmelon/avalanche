@@ -10,6 +10,6 @@
     <div v-if="loggedIn">
         this is a test
         {{ user }}
-        <button @click="clear()">Click this</button>
+        <button @click="clear()">Logout</button>
     </div>
 </template>
