@@ -3,6 +3,10 @@
     import EditNoteForm from '@/components/EditNoteForm.vue'
     import { noteFormSchema, type NoteFormData } from '@/prisma/schema/note'
 
+    definePageMeta({
+        middleware: 'auth-user'
+    })
+
     const route = useRoute()
     const noteId = route.params.note_id
 

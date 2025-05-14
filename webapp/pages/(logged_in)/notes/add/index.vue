@@ -2,6 +2,10 @@
     import AddNoteForm from '@/components/AddNoteForm.vue'
     import { type NoteFormData, type AddNoteData, addNoteSchema } from '~/prisma/schema/note'
 
+    definePageMeta({
+        middleware: 'auth-user'
+    })
+
     const { user } = useUserSession()
     const formErrors = ref<Record<string, string>>({})
     

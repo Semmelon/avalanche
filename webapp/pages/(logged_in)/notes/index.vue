@@ -3,7 +3,8 @@
     import NotePreview from '@/components/NotePreview.vue'
 
     definePageMeta({
-        layout: 'notelist'
+        layout: 'notelist',
+        middleware: 'auth-user'
     })
 
     const { user } = useUserSession()

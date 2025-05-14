@@ -1,5 +1,9 @@
 <script setup lang="ts">
-    import { userSchema, type UserData } from '~/prisma/schema/user'
+    import { userSchema, type UserData } from '@/prisma/schema/user'
+
+    definePageMeta({
+        middleware: 'auth-user'
+    })
 
     const { fetch: refreshSession } = useUserSession()
 

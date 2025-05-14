@@ -1,5 +1,10 @@
 <script setup>
     import { useTestStore } from '@/stores/TestStroe'
+
+    definePageMeta({
+        middleware: 'auth-user'
+    })
+
     const { loggedIn, user, session, clear } = useUserSession()
 
     const testStore = useTestStore()
