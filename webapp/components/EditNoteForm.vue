@@ -5,7 +5,11 @@
         note: {
             required: true,
             type: Object as PropType<GetNote>
-        }
+        },
+        formError: {
+            required: true,
+            type: Object as PropType<Record<string, string> | undefined>
+        },
     })
 </script>
 
@@ -20,8 +24,10 @@
         >
             <label for="emailField">Title: </label>
             <input id="emailField" type="text" v-model="note.title">
+            <p v-if="formError?.title" class="error">{{ formError.title }}</p>
             <label for="passwordfield">Description: </label>
             <input id="passwordfield" type="text" v-model="note.description">
+            <p v-if="formError?.description" class="error">{{ formError.description }}</p>
             <button type="submit">Save Changes</button>
         </form>
     </div>
@@ -70,32 +76,7 @@
         }
     }
 
-    .borderDiv {
-        width: 90%;
-        margin: 32px auto 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        div {
-            background-color: var(--mh-blue);
-            width: 100%;
-            opacity: 60%;
-            height: 2px;
-            box-shadow: 0 4px 2px -3px var(--mh-blue);
-        }
-
-        p {
-            margin: 0px 8px;
-        }
-    }
-
-    .googleLine {
-        display: flex;
-        align-items: center;
-
-        p {
-            margin-right: 8px;
-        }
+    .error {
+        color: red;
     }
 </style>

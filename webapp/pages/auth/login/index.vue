@@ -1,11 +1,24 @@
 <script setup lang="ts">
-    import type AuthCredentials from '@/types/credentials'
+    import { userSchema, type UserData } from '@/prisma/schema/user'
 
     const { fetch: refreshSession } = useUserSession()
 
-    const login = async (buttonName: string, credentials: AuthCredentials) => {
+    const formErrors = ref<Record<string, string>>({})
+
+    const login = async (buttonName: string, credentials: UserData) => {
         if(buttonName !== 'Sign In'){
           console.log('Something went wrong!!!')
+        }
+
+        const res = userSchema.safeParse(credentials)
+
+        if(!res.success){
+            formErrors.value = res.error.errors.reduce((acc, { path, message }) => {
+                acc[path[0]] = message
+                return acc
+            }, {} as Record<string, string>)
+
+            return
         }
 
         await $fetch('/api/auth/login', {
@@ -25,5 +38,6 @@
     <CredentialsForm
         buttonName="Sign In"
         v-on:submitCredentials="login"
+        :formError="formErrors"
     />
 </template>

@@ -1,16 +1,20 @@
 <script setup lang="ts">
     import type { PropType } from 'vue'
     import GoogleIcon from '@/assets/Googlcon.jpg'
-    import type AuthCredentials from '@/types/credentials'
+    import type { UserData } from '@/prisma/schema/user'
 
     defineProps({
         buttonName: {
             required: true,
             type: String as PropType<string>,
-        }
+        },
+        formError: {
+            required: true,
+            type: Object as PropType<Record<string, string> | undefined>
+        },
     })
 
-    const credentials = reactive<AuthCredentials>({email: '', password: ''})
+    const credentials = reactive<UserData>({email: '', password: ''})
 
     const { email, password } = toRefs(credentials)
 </script>
@@ -26,8 +30,10 @@
         >
             <label for="emailField">Email: </label>
             <input id="emailField" type="email" v-model="email">
+            <p v-if="formError?.email" class="error">{{ formError.email }}</p>
             <label for="passwordfield">Password: </label>
             <input id="passwordfield" type="password" v-model="password">
+            <p v-if="formError?.password" class="error">{{ formError.password }}</p>
             <button type="submit">{{ buttonName }}</button>
         </form>
         <div class="borderDiv">
